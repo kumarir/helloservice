@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xml-fragment>
-  <ser:coreEntry isProxy="true" isEnabled="true" xmlns:ser="http://www.bea.com/wli/sb/services">
+<xml-fragment xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:http="http://www.bea.com/wli/sb/transports/http">
+  <ser:coreEntry isProxy="true" isEnabled="true" isTracingEnabled="false" xmlns:ser="http://www.bea.com/wli/sb/services">
     <ser:description>Hello service used to validate consumer platforms connections and validate consumer platforms can handle SOA faults</ser:description>
     <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:wsdl ref="NorthBoundInterfaces/helloservice_1_0"/>
@@ -29,15 +29,16 @@
     </ser:ws-policy>
   </ser:coreEntry>
   <ser:endpointConfig xmlns:ser="http://www.bea.com/wli/sb/services">
-    <tran:provider-id xmlns:tran="http://www.bea.com/wli/sb/transports">http</tran:provider-id>
-    <tran:inbound xmlns:tran="http://www.bea.com/wli/sb/transports">true</tran:inbound>
-    <tran:URI xmlns:tran="http://www.bea.com/wli/sb/transports">
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
       <env:value xmlns:env="http://www.bea.com/wli/config/env">/services/Hello_1_0</env:value>
     </tran:URI>
-    <tran:inbound-properties xmlns:tran="http://www.bea.com/wli/sb/transports"/>
-    <tran:all-headers xmlns:tran="http://www.bea.com/wli/sb/transports">false</tran:all-headers>
-    <tran:provider-specific xmlns:tran="http://www.bea.com/wli/sb/transports">
-      <http:inbound-properties xmlns:http="http://www.bea.com/wli/sb/transports/http"/>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+      <http:dispatch-policy>ProxyWorkManager</http:dispatch-policy>
     </tran:provider-specific>
   </ser:endpointConfig>
   <ser:router errorHandler="_onErrorHandler-7979769518289812228--16e8d2f4.11d0a9c341b.-7fec" xmlns:ser="http://www.bea.com/wli/sb/services">
